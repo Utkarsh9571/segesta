@@ -1,0 +1,263 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --font-heading: var(--font-heading), var(--font-sans), sans-serif;
+  }
+}
+
+/* Theme A: Daylight Token Utility Classes */
+.theme-daylight {
+  --bg-gradient: linear-gradient(180deg, #6D4E8B 0%, #A16885 45%, #B27790 100%);
+  --mountain-color: #B29494;
+  --buildings-left: #903E4A;
+  --buildings-right: #B0710A;
+  --water-color: #A16F75;
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.85);
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+}
+
+/* Theme B: Nocturne Token Utility Classes */
+.theme-nocturne {
+  --bg-gradient: linear-gradient(180deg, #161232 0%, #0D0B1F 100%);
+  --waterfall-color: #1D2251;
+  --glow-warm: #784457;
+  --glow-amber: #E8935A;
+  --structure-color: #1a1735;
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.70);
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+}
+
+/* Seamless theme crossfade transitions */
+.theme-transition-mask {
+  position: relative;
+}
+
+.theme-transition-mask::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, rgba(22, 18, 50, 0.8) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.theme-daylight-blend::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  background: linear-gradient(180deg, #0D0B1F 0%, rgba(109, 78, 139, 0.4) 60%, transparent 100%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.theme-daylight-blend::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  background: linear-gradient(0deg, #161232 0%, rgba(178, 119, 144, 0.4) 60%, transparent 100%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Typography Helpers */
+.wordmark-title {
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.tagline-sub {
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.section-h2 {
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.section-h3 {
+  font-family: var(--font-heading), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.body-copy {
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 400;
+  font-size: 0.975rem;
+  line-height: 1.6;
+  max-width: 440px;
+}
+
+.theme-nocturne .body-copy {
+  color: rgba(255, 255, 255, 0.70);
+}
+
+.theme-daylight .body-copy {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Glassmorphic expand button */
+.glass-expand-btn {
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, border-color 0.3s ease;
+  will-change: transform;
+}
+
+.glass-expand-btn:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: scale(1.05);
+}
+
+/* Hardware accelerated transform & opacity keyframe animations (Zero layout thrashing) */
+@keyframes cloudDriftSlow {
+  0% { transform: translate3d(-25%, 0, 0); }
+  100% { transform: translate3d(105%, 0, 0); }
+}
+
+@keyframes cloudDriftFast {
+  0% { transform: translate3d(-35%, 0, 0); }
+  100% { transform: translate3d(115%, 0, 0); }
+}
+
+@keyframes riverShimmer {
+  0% { stroke-dashoffset: 0; opacity: 0.65; }
+  50% { opacity: 0.95; }
+  100% { stroke-dashoffset: -120; opacity: 0.65; }
+}
+
+@keyframes mistPulse {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.45; }
+  50% { transform: translate3d(0, -4px, 0) scale(1.08); opacity: 0.75; }
+}
+
+@keyframes windowFlicker1 {
+  0%, 100% { opacity: 0.95; }
+  22% { opacity: 0.2; }
+  24% { opacity: 0.95; }
+  78% { opacity: 0.95; }
+  80% { opacity: 0.3; }
+  84% { opacity: 0.95; }
+}
+
+@keyframes windowFlicker2 {
+  0%, 100% { opacity: 0.3; }
+  45% { opacity: 0.95; }
+  50% { opacity: 0.95; }
+  54% { opacity: 0.25; }
+  90% { opacity: 0.9; }
+}
+
+@keyframes windowFlicker3 {
+  0%, 100% { opacity: 0.85; }
+  10% { opacity: 0.15; }
+  14% { opacity: 0.9; }
+  60% { opacity: 0.9; }
+  63% { opacity: 0.4; }
+  68% { opacity: 0.95; }
+}
+
+.anim-cloud-slow {
+  animation: cloudDriftSlow 65s linear infinite;
+  will-change: transform;
+}
+
+.anim-cloud-fast {
+  animation: cloudDriftFast 45s linear infinite;
+  will-change: transform;
+}
+
+.anim-river-shimmer {
+  stroke-dasharray: 20 10;
+  animation: riverShimmer 3s linear infinite;
+  will-change: stroke-dashoffset, opacity;
+}
+
+.anim-mist {
+  animation: mistPulse 5s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.flicker-1 { animation: windowFlicker1 4s ease-in-out infinite; will-change: opacity; }
+.flicker-2 { animation: windowFlicker2 6.5s ease-in-out infinite; will-change: opacity; }
+.flicker-3 { animation: windowFlicker3 5.2s ease-in-out infinite; will-change: opacity; }
+
+/* Nocturne Animations */
+@keyframes verticalStreaksFall {
+  0% { transform: translate3d(0, -50%, 0); }
+  100% { transform: translate3d(0, 0%, 0); }
+}
+
+@keyframes lightBeamsRising {
+  0% { transform: translate3d(0, 0%, 0); }
+  100% { transform: translate3d(0, -50%, 0); }
+}
+
+@keyframes orbBreathe1 {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.16); opacity: 1; }
+}
+
+@keyframes orbBreathe2 {
+  0%, 100% { transform: scale(0.92); opacity: 0.65; }
+  50% { transform: scale(1.1); opacity: 0.95; }
+}
+
+@keyframes orbBreathe3 {
+  0%, 100% { transform: scale(1.08); opacity: 0.9; }
+  50% { transform: scale(0.95); opacity: 0.7; }
+}
+
+@keyframes furnaceFlicker {
+  0%, 100% { opacity: 0.75; transform: scaleY(1); }
+  25% { opacity: 0.95; transform: scaleY(1.06); }
+  50% { opacity: 0.65; transform: scaleY(0.96); }
+  75% { opacity: 0.9; transform: scaleY(1.04); }
+}
+
+@keyframes beamEmitterPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+@keyframes hologramHover {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.85; }
+  50% { transform: translate3d(0, -5px, 0); opacity: 0.98; }
+}
+
+.anim-waterfall-fall { animation: verticalStreaksFall 2.2s linear infinite; will-change: transform; }
+.anim-light-beam-rise { animation: lightBeamsRising 3.5s linear infinite; will-change: transform; }
+.anim-beam-emitter { animation: beamEmitterPulse 3s ease-in-out infinite; will-change: opacity; }
+.anim-orb-1 { animation: orbBreathe1 4.2s ease-in-out infinite; transform-origin: center; will-change: transform, opacity; }
+.anim-orb-2 { animation: orbBreathe2 5.6s ease-in-out infinite 1.2s; transform-origin: center; will-change: transform, opacity; }
+.anim-orb-3 { animation: orbBreathe3 3.8s ease-in-out infinite 0.7s; transform-origin: center; will-change: transform, opacity; }
+.anim-furnace { animation: furnaceFlicker 3s ease-in-out infinite; transform-origin: bottom center; will-change: transform, opacity; }
+.anim-hologram { animation: hologramHover 4s ease-in-out infinite; will-change: transform, opacity; }
