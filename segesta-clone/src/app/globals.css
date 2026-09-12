@@ -222,18 +222,18 @@
 }
 
 @keyframes orbBreathe1 {
-  0%, 100% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.16); opacity: 1; }
+  0%, 100% { transform: scale(0.95); opacity: 0.6; }
+  50% { transform: scale(1.05); opacity: 1.0; }
 }
 
 @keyframes orbBreathe2 {
-  0%, 100% { transform: scale(0.92); opacity: 0.65; }
-  50% { transform: scale(1.1); opacity: 0.95; }
+  0%, 100% { transform: scale(0.94); opacity: 0.55; }
+  50% { transform: scale(1.06); opacity: 1.0; }
 }
 
 @keyframes orbBreathe3 {
-  0%, 100% { transform: scale(1.08); opacity: 0.9; }
-  50% { transform: scale(0.95); opacity: 0.7; }
+  0%, 100% { transform: scale(1.05); opacity: 1.0; }
+  50% { transform: scale(0.95); opacity: 0.6; }
 }
 
 @keyframes furnaceFlicker {
@@ -253,11 +253,63 @@
   50% { transform: translate3d(0, -5px, 0); opacity: 0.98; }
 }
 
+/* Water and Waterfall Animations */
+@keyframes waterCurrentFlow {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -260; }
+}
+
+@keyframes foamBubblePulse {
+  0%, 100% { transform: scale(0.82); opacity: 0.2; }
+  50% { transform: scale(1.22); opacity: 0.95; }
+}
+
+@keyframes streakFallFast {
+  0% { transform: translate3d(0, -50%, 0); }
+  100% { transform: translate3d(0, 0%, 0); }
+}
+
+@keyframes streakFallMedium {
+  0% { transform: translate3d(0, -50%, 0); }
+  100% { transform: translate3d(0, 0%, 0); }
+}
+
+@keyframes streakFallSlow {
+  0% { transform: translate3d(0, -50%, 0); }
+  100% { transform: translate3d(0, 0%, 0); }
+}
+
+.anim-current-flow {
+  stroke-dasharray: 80 40;
+  animation: waterCurrentFlow 2.8s linear infinite;
+  will-change: stroke-dashoffset;
+}
+
+.anim-current-flow-fast {
+  stroke-dasharray: 100 50;
+  animation: waterCurrentFlow 2.1s linear infinite;
+  will-change: stroke-dashoffset;
+}
+
+.anim-current-flow-slow {
+  stroke-dasharray: 70 35;
+  animation: waterCurrentFlow 3.5s linear infinite;
+  will-change: stroke-dashoffset;
+}
+
+.anim-foam-1 { animation: foamBubblePulse 2.4s ease-in-out infinite; transform-origin: center; will-change: transform, opacity; }
+.anim-foam-2 { animation: foamBubblePulse 3.1s ease-in-out infinite 0.8s; transform-origin: center; will-change: transform, opacity; }
+.anim-foam-3 { animation: foamBubblePulse 2.7s ease-in-out infinite 1.5s; transform-origin: center; will-change: transform, opacity; }
+
+.anim-waterfall-fast { animation: streakFallFast 1.6s linear infinite; will-change: transform; }
+.anim-waterfall-mid { animation: streakFallMedium 2.4s linear infinite; will-change: transform; }
+.anim-waterfall-slow { animation: streakFallSlow 3.2s linear infinite; will-change: transform; }
 .anim-waterfall-fall { animation: verticalStreaksFall 2.2s linear infinite; will-change: transform; }
 .anim-light-beam-rise { animation: lightBeamsRising 3.5s linear infinite; will-change: transform; }
 .anim-beam-emitter { animation: beamEmitterPulse 3s ease-in-out infinite; will-change: opacity; }
-.anim-orb-1 { animation: orbBreathe1 4.2s ease-in-out infinite; transform-origin: center; will-change: transform, opacity; }
-.anim-orb-2 { animation: orbBreathe2 5.6s ease-in-out infinite 1.2s; transform-origin: center; will-change: transform, opacity; }
-.anim-orb-3 { animation: orbBreathe3 3.8s ease-in-out infinite 0.7s; transform-origin: center; will-change: transform, opacity; }
+.anim-orb-1 { animation: orbBreathe1 3.2s ease-in-out infinite; transform-origin: center; will-change: transform, opacity; }
+.anim-orb-2 { animation: orbBreathe2 3.8s ease-in-out infinite 0.9s; transform-origin: center; will-change: transform, opacity; }
+.anim-orb-3 { animation: orbBreathe3 3.5s ease-in-out infinite 1.6s; transform-origin: center; will-change: transform, opacity; }
 .anim-furnace { animation: furnaceFlicker 3s ease-in-out infinite; transform-origin: bottom center; will-change: transform, opacity; }
 .anim-hologram { animation: hologramHover 4s ease-in-out infinite; will-change: transform, opacity; }
+

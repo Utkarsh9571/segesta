@@ -30,8 +30,12 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${plusJakartaSans.variable} ${syne.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col font-sans bg-[#161232] text-white">
+      <body
+        className="min-h-full flex flex-col font-sans bg-[#161232] text-white"
+        suppressHydrationWarning
+      >
         <SmoothScrollProvider>
           <CustomCursor />
           {children}
